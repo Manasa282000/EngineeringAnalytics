@@ -71,7 +71,7 @@ The **physics-informed model** incorporates the Eikonal equation as a soft const
 
 > 📌 **Observation**: The data-only model outperforms the PINN in this setup, especially with fewer points. This may be due to the difficulty in estimating gradients accurately with limited data.
 
----
+# Question 2
 
 ## 📦 Installation
 
@@ -82,76 +82,64 @@ git clone https://github.com/your-username/eikonal-pinn.git
 cd eikonal-pinn
 pip install -r requirements.txt
 
-# Question 2
-# Question 02  
-# 🧠 Neural Ordinary Differential Equation (Neural ODE) vs Standard Neural Network for 2D Classification
+# Neural ODE vs. Standard Neural Network for 2D Classification
 
-This repository contains a Python script that trains and compares two neural network models—one **Standard Feedforward Neural Network** and one **Neural Ordinary Differential Equation (Neural ODE)** model—on synthetic 2D classification tasks using `scikit-learn` datasets.
-
----
+This repository contains a Python script that trains and compares two neural network models—one Standard Feedforward Neural Network and one Neural Ordinary Differential Equation (Neural ODE) model—on synthetic 2D classification tasks using scikit-learn datasets.
 
 ## 📌 Overview
 
-- **Objective**: Classify 2D data points using traditional and continuous-depth neural models.
+**Objective:** Classify 2D data points using traditional and continuous-depth neural models.
 
-### 🔍 Models:
-- **Standard Neural Network** – A typical feedforward network with ReLU activation.
-- **Neural ODE** – A continuous-depth model that learns via an ODE solver using the adjoint method for memory efficiency.
+**Models:**
 
-### 📊 Dataset:
-- 2D synthetic data generated using `make_blobs` from `sklearn.datasets` (default).
-- Options available to switch to `make_moons` or `make_circles`.
+*   **Standard Neural Network:** A typical feedforward network with ReLU activation.
+*   **Neural ODE:** A continuous-depth model that learns via an ODE solver using the adjoint method for memory efficiency.
 
----
+**Dataset:**
+
+*   2D synthetic data generated using `make_blobs` from `sklearn.datasets` (default).
+*   Options to switch to `make_moons` or `make_circles`.
 
 ## 🔧 Implementation Details
 
-- **Standardization**: Input features are standardized using `StandardScaler`.
-- **Loss Function**: `CrossEntropyLoss` for multi-class classification.
-- **Optimizer**: Adam with a learning rate of `0.01`.
-- **Epochs**: 500 training epochs.
-- **Device**: Automatically uses GPU (CUDA) if available.
+*   **Standardization:** Input features are standardized using `StandardScaler`.
+*   **Loss Function:** `CrossEntropyLoss` for multi-class classification.
+*   **Optimizer:** Adam with a learning rate of `0.01`.
+*   **Epochs:** 500 training epochs.
+*   **Device:** Automatically uses GPU (CUDA) if available.
 
----
-
-## 🧪 Model Architectures
+## 🧪 Model Architecture
 
 ### 🔹 Standard Neural Network
-
+Input → Linear → ReLU → Linear → Output
 
 ### 🔸 Neural ODE Model
+Input → Linear → ODE Solver → Linear → Output
 
+The ODE solver learns the continuous transformation of hidden states:
 
-- The ODE solver learns the continuous transformation of hidden states:
+$$\frac{dh}{dt} = f(h(t), t)$$
 
-  \[
-  \frac{dh}{dt} = f(h(t), t)
-  \]
-
-- Implemented using `torchdiffeq.odeint_adjoint` for efficient backpropagation.
-
----
+This is implemented using `torchdiffeq.odeint_adjoint` for efficient backpropagation.
 
 ## 📊 Results
 
-| Model             | Training Accuracy | Test Accuracy |
-|------------------|-------------------|---------------|
-| Standard NN       | 100.00%           | 100.00%       |
-| Neural ODE        | 100.00%           | 100.00%       |
+| Model         | Training Accuracy | Test Accuracy |
+|---------------|-------------------|---------------|
+| Standard NN   | 100.00%           | 100.00%       |
+| Neural ODE    | 100.00%           | 100.00%       |
 
----
+*(These results were obtained using the default `make_blobs` dataset with specific parameters. Performance may vary with other datasets or configurations.)*
 
-## 📈 Visualizations
+## ⚙️ Requirements
 
-- **Decision Boundaries**: Plots show how each model separates the 2D feature space.
-- **Training Loss**: Loss curves illustrate convergence behavior over 500 epochs.
-- **Test Accuracy Over Time**: Accuracy is tracked every 50 epochs to observe generalization.
+*   Python 3.7+
+*   PyTorch (>=1.8)
+*   torchdiffeq
+*   scikit-learn
+*   NumPy
+*   Matplotlib
 
----
-
-## 🏁 How to Run
-
-Install the dependencies:
-
+You can install the necessary packages using pip:
 ```bash
-pip install torch numpy matplotlib scikit-learn torchdiffeq
+pip install torch torchvision torchaudio torchdiffeq scikit-learn numpy matplotlib
