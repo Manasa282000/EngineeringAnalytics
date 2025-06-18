@@ -1,3 +1,21 @@
+# EA_Assignment3: Physics-Informed Neural Network (PINN) and Neural ODE Implementations
+
+This repository contains Python scripts demonstrating two distinct neural network applications:
+1.  **Question 01**: A Physics-Informed Neural Network (PINN) for solving the 2D Eikonal Equation.
+2.  **Question 02**: A comparison between a Standard Neural Network and a Neural Ordinary Differential Equation (Neural ODE) model for 2D classification tasks.
+
+The scripts are designed to be run from a single file, `EA_Assignment3.py`, which encompasses the code for both questions.
+
+## 🚀 Getting Started
+
+To run the Python scripts in this repository, please follow these steps:
+
+### 1. Install Dependencies
+
+First, you need to install the required Python packages. These are listed in the `requirements.txt` file.
+
+```bash
+pip install -r requirements.txt
 # Question 01
 # 🧠 Physics-Informed Neural Network (PINN) for Solving the 2D Eikonal Equation
 
