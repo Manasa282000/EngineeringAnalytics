@@ -71,18 +71,7 @@ The **physics-informed model** incorporates the Eikonal equation as a soft const
 
 > 📌 **Observation**: The data-only model outperforms the PINN in this setup, especially with fewer points. This may be due to the difficulty in estimating gradients accurately with limited data.
 
-# Question 2
-
-## 📦 Installation
-
-Clone the repository and install dependencies:
-
-```bash
-git clone https://github.com/your-username/eikonal-pinn.git
-cd eikonal-pinn
-pip install -r requirements.txt
-
-# Neural ODE vs. Standard Neural Network for 2D Classification
+# 🧠 Neural Ordinary Differential Equation (Neural ODE) vs Standard Neural Network for 2D Classification
 
 This repository contains a Python script that trains and compares two neural network models—one Standard Feedforward Neural Network and one Neural Ordinary Differential Equation (Neural ODE) model—on synthetic 2D classification tasks using scikit-learn datasets.
 
@@ -91,55 +80,40 @@ This repository contains a Python script that trains and compares two neural net
 **Objective:** Classify 2D data points using traditional and continuous-depth neural models.
 
 **Models:**
-
-*   **Standard Neural Network:** A typical feedforward network with ReLU activation.
-*   **Neural ODE:** A continuous-depth model that learns via an ODE solver using the adjoint method for memory efficiency.
+* **Standard Neural Network** – A typical feedforward network with ReLU activation.
+* **Neural ODE** – A continuous-depth model that learns via an ODE solver using the adjoint method for memory efficiency.
 
 **Dataset:**
-
-*   2D synthetic data generated using `make_blobs` from `sklearn.datasets` (default).
-*   Options to switch to `make_moons` or `make_circles`.
+* 2D synthetic data generated using `make_blobs` from `sklearn.datasets` (default).
+* Options to switch to `make_moons` or `make_circles`.
 
 ## 🔧 Implementation Details
 
-*   **Standardization:** Input features are standardized using `StandardScaler`.
-*   **Loss Function:** `CrossEntropyLoss` for multi-class classification.
-*   **Optimizer:** Adam with a learning rate of `0.01`.
-*   **Epochs:** 500 training epochs.
-*   **Device:** Automatically uses GPU (CUDA) if available.
+* **Standardization:** Input features are standardized using `StandardScaler`.
+* **Loss Function:** `CrossEntropyLoss` for multi-class classification.
+* **Optimizer:** `Adam` with a learning rate of 0.01.
+* **Epochs:** 500 training epochs.
+* **Device:** Automatically uses GPU (CUDA) if available.
 
 ## 🧪 Model Architecture
 
 ### 🔹 Standard Neural Network
-Input → Linear → ReLU → Linear → Output
+
+$\text{Input} \rightarrow \text{Linear} \rightarrow \text{ReLU} \rightarrow \text{Linear} \rightarrow \text{Output}$
 
 ### 🔸 Neural ODE Model
-Input → Linear → ODE Solver → Linear → Output
+
+$\text{Input} \rightarrow \text{Linear} \rightarrow \boxed{\text{ODE Solver}} \rightarrow \text{Linear} \rightarrow \text{Output}$
 
 The ODE solver learns the continuous transformation of hidden states:
 
-$$\frac{dh}{dt} = f(h(t), t)$$
+$\frac{dh}{dt} = f(h(t), t)$
 
-This is implemented using `torchdiffeq.odeint_adjoint` for efficient backpropagation.
+Implemented using `torchdiffeq.odeint_adjoint` for efficient backpropagation.
 
 ## 📊 Results
 
-| Model         | Training Accuracy | Test Accuracy |
-|---------------|-------------------|---------------|
-| Standard NN   | 100.00%           | 100.00%       |
-| Neural ODE    | 100.00%           | 100.00%       |
-
-*(These results were obtained using the default `make_blobs` dataset with specific parameters. Performance may vary with other datasets or configurations.)*
-
-## ⚙️ Requirements
-
-*   Python 3.7+
-*   PyTorch (>=1.8)
-*   torchdiffeq
-*   scikit-learn
-*   NumPy
-*   Matplotlib
-
-You can install the necessary packages using pip:
-```bash
-pip install torch torchvision torchaudio torchdiffeq scikit-learn numpy matplotlib
+| Model            | Training Accuracy | Test Accuracy |
+| :--------------- | :---------------- | :------------ |
+| Standard NN      | 100.00%           | 100.00%       |
+| Neural ODE       | 100.00%           | 100.00%       |
