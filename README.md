@@ -120,9 +120,9 @@ This experiment compares a **standard feedforward neural network** with a **Neur
 
 - ODE learns continuous transformation:
 
-\[
+
 \frac{dh}{dt} = f(h(t), t)
-\]
+
 
 - Efficient backpropagation via `torchdiffeq.odeint_adjoint`.
 
