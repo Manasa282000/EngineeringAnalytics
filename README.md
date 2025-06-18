@@ -71,6 +71,8 @@ The **physics-informed model** incorporates the Eikonal equation as a soft const
 
 > 📌 **Observation**: The data-only model outperforms the PINN in this setup, especially with fewer points. This may be due to the difficulty in estimating gradients accurately with limited data.
 
+# Question 2
+
 # 🧠 Neural Ordinary Differential Equation (Neural ODE) vs Standard Neural Network for 2D Classification
 
 This repository contains a Python script that trains and compares two neural network models—one Standard Feedforward Neural Network and one Neural Ordinary Differential Equation (Neural ODE) model—on synthetic 2D classification tasks using scikit-learn datasets.
